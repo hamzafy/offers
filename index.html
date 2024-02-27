@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<!-- Bootstrap Start -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Bootstrap End -->
+
+  <style>
+  	body{
+		.drop-frkj {
+			  position: relative;
+		    border: 3px solid #bbbbbb;
+		    margin: 15px 0px;
+		    border-radius: 15px;
+		    padding: 25px 15px;
+		    display: flex;
+		    justify-content: start;
+		    align-items: center;
+		}
+		.drop-fraj {
+		    display: flex;
+		    justify-content: start;
+		    align-items: center;
+		}
+		.drop-frtj {
+		    padding: 0;
+		    margin: 0 10px 0 0;
+		    font-size: 18px;
+		}
+		.drop-frkj.active {
+		    border: 3px solid #0075ff;
+		}
+
+		.drop-uuij {
+		    position: absolute;
+		    right: 20px;
+		    top: -8px;
+		    background-color: #0075ff;
+		    padding: 6px 12px;
+		    border-bottom-left-radius: 5px;
+		    border-bottom-right-radius: 5px;
+		    font-size: 12px;
+		    font-weight: 600;
+		    color: #fff;
+		    text-transform: uppercase;
+		}
+		.drop-uuij>p .drop-uure {
+		    left: 0;
+		    transform: translateX(-100%);
+		    border-left: 8px solid rgba(0,0,0,0);
+		}
+		.drop-uuij>p>span {
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+		    border-bottom-color: #0075ff;
+		    border-bottom-width: 8px;
+		    border-bottom-style: solid;
+		    display: block;
+		    top: 0;
+		    filter: brightness(0.7);
+		}
+		.drop-uuij>p .drop-uunm {
+		    right: 0;
+		    transform: translateX(100%);
+		    border-right: 8px solid rgba(0,0,0,0);
+		}
+		.drop-uuij>p>span {
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+		    border-bottom-color: #0075ff;
+		    border-bottom-width: 8px;
+		    border-bottom-style: solid;
+		    display: block;
+		    top: 0;
+		    filter: brightness(0.7);
+		}
+		.drop-uuij p {
+		    margin: 0;
+		    padding: 0;
+		}
+  </style>
+</head>
+<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="my-5">
+
+						<div ref="drop-ghty" class="drop-frkj">
+							<div class="drop-uuij">Best Offer<p><span class="drop-uure"></span><span class="drop-uunm"></span></p></div>
+							<div class="drop-fraj">
+								<input type="radio" ref="drop-xcvr" class="RadioQty custom-control-input drop-frbj" name="offers" value="66" id="quantity_1_0" checked>
+								<p class="drop-frtj">أريد شراء 4 فقط بـ 666.00 $</p>
+							</div>
+						</div>
+
+						<div ref="drop-ghty" class="drop-frkj">
+							<div class="drop-fraj">
+								<input type="radio" ref="drop-xcvr" class="RadioQty custom-control-input drop-frbj" name="offers" value="66" id="quantity_1_0">
+								<p class="drop-frtj">أريد شراء 66 فقط بـ 777.00 $</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	<script>
+		
+		window.onload = function() {
+
+			const dropifyOffers = {
+				initActive: function(){
+					const els = document.querySelectorAll('[ref="drop-xcvr"]');
+					els.forEach(function(el) {
+			        if(el.checked){ 
+			        	el.closest('[ref="drop-ghty"]').classList.add('active');
+			        }
+			    });
+				},
+				initClickEvent: function(){
+					const items = document.querySelectorAll('[ref="drop-ghty"]');
+					for (var i = 0; i < items.length; i++) {
+					    items[i].addEventListener('click', function(event){
+					      dropifyOffers.removeActive();
+					      dropifyOffers.addActive(this);
+					      dropifyOffers.addChecked(this);
+					    });
+					}
+				},
+				removeActive: function(){
+					const elements = document.querySelectorAll('[ref="drop-ghty"]');
+					elements.forEach(function(el) {
+					  el.classList.remove('active');
+					});
+				},
+				addActive: function(hadi){
+					const item = hadi.closest('[ref="drop-ghty"]');
+					item.classList.add('active');
+				},
+				addChecked: function(hadi){
+					const radio = hadi.querySelector('[ref="drop-xcvr"]');
+					radio.checked = true;
+				}
+			};
+
+	    	dropifyOffers.initActive();
+	    	dropifyOffers.initClickEvent();
+		};
+
+	</script>
+</body>
+</html>
